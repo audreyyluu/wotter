@@ -9,6 +9,7 @@ export default function Drink() {
   const [goalInput, setGoalInput] = useState('');
   const [goal, setGoal] = useState(64); // default goal
   const [water, setWater] = useState(0);
+  const [shells, setShells] = useState(0);
   const router = useRouter();
 
   const [isProfileHovered, setProfileIsHovered] = useState(false);
@@ -27,13 +28,14 @@ export default function Drink() {
       const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
       setGoal(userData.goal || 64);
       setWater(userData.water || 0);
+      setShells(userData.shells || 0);
     }
   }, []);
 
   // Save water and goal to localStorage for the current user
-  const saveUserData = (newGoal: number, newWater: number) => {
+  const saveUserData = (newGoal: number, newWater: number, newShells: number) => {
     const username = localStorage.getItem('wotter_current_user') || '';
-    const userData = { goal: newGoal, water: newWater };
+    const userData = { goal: newGoal, water: newWater, shells: newShells };
     localStorage.setItem(`wotter_data_${username}`, JSON.stringify(userData));
   };
 
@@ -65,26 +67,32 @@ export default function Drink() {
   // Handlers for water tracking
   const handleAddWater = () => {
     const newWater = Math.min(water + 1, goal); // 1 oz per click, max is goal
+    const diff = newWater - water;
+    const newShells = shells + diff;
     setWater(newWater);
-    saveUserData(goal, newWater);
+    setShells(newShells);
+    saveUserData(goal, newWater, newShells);
   };
 
   const handleRemoveWater = () => {
     const newWater = Math.max(water - 1, 0); // 1 oz per click, min is 0
+    const diff = newWater - water;
+    const newShells = shells + diff;
     setWater(newWater);
-    saveUserData(goal, newWater);
+    setShells(newShells);
+    saveUserData(goal, newWater, newShells);
   };
 
-  // Handlers for goal popup
+  // Set goal
   const handleGoalSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newGoal = Math.max(Number(goalInput), 1);
     setGoal(newGoal);
     if (water > newGoal) {
       setWater(newGoal);
-      saveUserData(newGoal, newGoal);
+      saveUserData(newGoal, newGoal, shells);
     } else {
-      saveUserData(newGoal, water);
+      saveUserData(newGoal, water, shells);
     }
     setShowGoalPopup(false);
     setGoalInput('');
@@ -125,6 +133,11 @@ export default function Drink() {
             style={{ transform: `scale(${isBottlesHovered ? 1.5 : 1})`, transition: 'transform 0.3s ease' }}
           />
         </a>
+      </div>
+      {/* Bottom left shell count */}
+      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'fixed', bottom: 0, margin: '1rem' }}>
+        <img src="/assets/buttons/shell.png" alt="shell" style={{ width: 50, height: 50 }} />
+        <span style={{ fontSize: 24, color: '#fff', fontWeight: 700, marginLeft: 8 }}>{shells}</span>
       </div>
       {/* Center content */}
       <div style={{
