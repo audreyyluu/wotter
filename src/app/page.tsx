@@ -11,10 +11,10 @@ export default function Home() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const storedUser = localStorage.getItem('wotter_username');
-    const storedPass = localStorage.getItem('wotter_password');
-    if (username === storedUser && password === storedPass) {
+    const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
+    if (users[username] && users[username] === password) {
       setError('');
+      localStorage.setItem('wotter_current_user', username);
       router.push('/drink');
     } else {
       setError('Invalid credentials. Please sign up if you do not have an account.');
