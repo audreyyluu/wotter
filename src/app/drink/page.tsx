@@ -163,7 +163,7 @@ export default function Drink() {
             borderRadius: 20,
             overflow: 'hidden',
             marginRight: 24,
-            border: '2px solid #0074D9',
+            border: '2px solid #fff',
             display: 'flex',
             flexDirection: 'column-reverse',
             alignItems: 'center',
@@ -172,7 +172,7 @@ export default function Drink() {
             <div style={{
               width: '100%',
               height: `${progressPercent}%`,
-              background: '#0074D9',
+              background: '#4295e2',
               transition: 'height 0.3s',
             }} />
             <span style={{
