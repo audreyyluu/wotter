@@ -149,114 +149,159 @@ export default function Drink() {
         <img src="/assets/buttons/shell.png" alt="shell" style={{ width: 50, height: 50 }} />
         <span style={{ fontSize: 24, color: '#fff', fontWeight: 700, marginLeft: 8 }}>{shells}</span>
       </div>
-      {/* Center content */}
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '80vh',
-        marginTop: '-10vh'
-      }}>
-        {/* Set Goal Button */}
-        <button
-          style={{ marginRight: 24, padding: '0.5rem 1rem', borderRadius: 8, border: '1px solid #0074D9', background: '#fff', color: '#0074D9', fontWeight: 600 }}
-          onClick={() => setShowGoalPopup(true)}
-        >
-          Set Goal
-        </button>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
-          {/* Vertical Progress Bar */}
-          <div style={{
-            height: '60vh', // about half the page
+      {/* Centered content with vertical progress bar to the left */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* Vertical Progress Bar */}
+        <div
+          style={{
+            height: '60vh',
             width: 40,
             background: '#eee',
             borderRadius: 20,
             overflow: 'hidden',
-            marginRight: 24,
+            marginRight: 48, // more space between bar and content
             border: '2px solid #fff',
             display: 'flex',
             flexDirection: 'column-reverse',
             alignItems: 'center',
-            position: 'relative'
-          }}>
-            <div style={{
+            position: 'relative',
+            pointerEvents: 'auto',
+          }}
+        >
+          <div
+            style={{
               width: '100%',
               height: `${progressPercent}%`,
               background: '#4295e2',
               transition: 'height 0.3s',
-            }} />
-            <span style={{
-              position: 'absolute',
-              top: 8,
-              left: 0,
-              right: 0,
-              textAlign: 'center',
-              color: '#0074D9',
-              fontWeight: 700,
-              fontSize: 16,
-              textShadow: '0 1px 2px #fff'
-            }}>
-              {remaining} oz
-            </span>
-          </div>
+            }}
+          />
+          <span
+        style={{
+          position: 'absolute',
+          top: 8,
+          left: 0,
+          right: 0,
+          textAlign: 'center',
+          color: '#0074D9',
+          fontWeight: 700,
+          fontSize: 16,
+          textShadow: '0 1px 2px #fff',
+        }}
+          >
+        {remaining} oz
+          </span>
+        </div>
+        {/* Center content */}
+        <div
+          style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        pointerEvents: 'auto',
+          }}
+        >
+          {/* Set Goal Button */}
+          <button
+        style={{
+          marginRight: 24,
+          padding: '0.5rem 1rem',
+          borderRadius: 8,
+          border: '1px solid #0074D9',
+          background: '#fff',
+          color: '#0074D9',
+          fontWeight: 600,
+        }}
+        onClick={() => setShowGoalPopup(true)}
+          >
+        Set Goal
+          </button>
           {/* Water Bottle Image with floating animation */}
           <img
-            src="/assets/buttons/bottles.png"
-            alt="Water Bottle"
-            style={{
-              height: '60vh',
-              animation: 'float-bottle 3s ease-in-out infinite',
-            }}
+        src="/assets/buttons/bottles.png"
+        alt="Water Bottle"
+        style={{
+          height: '60vh',
+          animation: 'float-bottle 3s ease-in-out infinite',
+        }}
           />
           {/* Floating animation keyframes */}
           <style>
-            {`
-              @keyframes float-bottle {
-                0% { transform: translateY(0) rotate(-2deg); }
-                25% { transform: translateY(-10px) rotate(2deg);}
-                50% { transform: translateY(0) rotate(-2deg);}
-                75% { transform: translateY(10px) rotate(2deg);}
-                100% { transform: translateY(0) rotate(-2deg);}
-              }
-            `}
+        {`
+          @keyframes float-bottle {
+            0% { transform: translateY(0) rotate(-2deg); }
+            25% { transform: translateY(-10px) rotate(2deg);}
+            50% { transform: translateY(0) rotate(-2deg);}
+            75% { transform: translateY(10px) rotate(2deg);}
+            100% { transform: translateY(0) rotate(-2deg);}
+          }
+        `}
           </style>
-        </div>
-        {/* Add/Remove Water */}
-        <div style={{ display: 'flex', alignItems: 'center', marginTop: 16 }}>
-          <button
-            onClick={handleRemoveWater}
-            style={{
-              fontSize: 24,
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              border: '1px solid #0074D9',
-              background: '#fff',
-              color: '#0074D9',
-              fontWeight: 700,
-              marginRight: 16,
-              cursor: 'pointer'
-            }}
-            aria-label="Remove water"
-          >-</button>
-          <span style={{ fontSize: 24, fontWeight: 700, color: '#fff', minWidth: 80, textAlign: 'center' }}>{water} oz</span>
-          <button
-            onClick={handleAddWater}
-            style={{
-              fontSize: 24,
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              border: '1px solid #0074D9',
-              background: '#fff',
-              color: '#0074D9',
-              fontWeight: 700,
-              marginLeft: 16,
-              cursor: 'pointer'
-            }}
-            aria-label="Add water"
-          >+</button>
+          {/* Add/Remove Water */}
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: 16 }}>
+        <button
+          onClick={handleRemoveWater}
+          style={{
+            fontSize: 24,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            border: '1px solid #0074D9',
+            background: '#fff',
+            color: '#0074D9',
+            fontWeight: 700,
+            marginRight: 16,
+            cursor: 'pointer',
+          }}
+          aria-label="Remove water"
+        >
+          -
+        </button>
+        <span
+          style={{
+            fontSize: 24,
+            fontWeight: 700,
+            color: '#fff',
+            minWidth: 80,
+            textAlign: 'center',
+          }}
+        >
+          {water} oz
+        </span>
+        <button
+          onClick={handleAddWater}
+          style={{
+            fontSize: 24,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            border: '1px solid #0074D9',
+            background: '#fff',
+            color: '#0074D9',
+            fontWeight: 700,
+            marginLeft: 16,
+            cursor: 'pointer',
+          }}
+          aria-label="Add water"
+        >
+          +
+        </button>
+          </div>
         </div>
       </div>
       {/* Profile popup */}
