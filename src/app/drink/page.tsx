@@ -62,8 +62,7 @@ export default function Drink() {
   };
 
   // Progress bar calculation
-  const remaining = Math.max(goal - water, 0);
-  const progressPercent = goal > 0 ? (remaining / goal) * 100 : 0;
+  const progressPercent = goal > 0 ? (water / goal) * 100 : 0;
 
   // Handlers for water tracking
   const handleAddWater = () => {
@@ -146,7 +145,7 @@ export default function Drink() {
             }}
           />
           <span className={styles['progress-amount']}>
-            {remaining} oz
+            {water} oz
           </span>
         </div>
         {/* Center content */}
