@@ -31,8 +31,10 @@ export default function Home() {
         height: '100vh',
         width: 'auto',
         margin: 0,
-        overflow: 'auto'
-      }}>
+        overflow: 'auto',
+      }}
+      className={styles['background-fadeIn']}
+    >
       <img
         src="assets/logo.png"
         alt="bottles"

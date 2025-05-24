@@ -107,8 +107,17 @@ export default function Drink() {
         height: '100vh',
         width: 'auto',
         margin: 0,
-        overflow: 'auto'
+        overflow: 'auto',
+        animation: 'fadeIn 3s'
       }}>
+      <style>
+        {`
+              @keyframes fadeIn {
+                0% { opacity: 0 }
+                100% { opacity: 100 }
+              }
+            `}
+      </style>
       {/* Top left profile button */}
       <div
         style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto' }}>

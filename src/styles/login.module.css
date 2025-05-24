@@ -37,5 +37,9 @@
     display: block;
     margin: auto;
     margin-top: 2vh;
-    animation: fadeIn 5s, float 3s ease-in-out infinite;
+    animation: fadeIn 8s, float 3s ease-in-out infinite;
+}
+
+.background-fadeIn {
+    animation: fadeIn 3s;
 }
