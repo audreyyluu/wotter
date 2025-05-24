@@ -65,7 +65,7 @@ export default function Home() {
             />
           </div>
           {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-          <div style={{ display: 'flex', justifyContent: 'center', }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               type="submit"
               style={{
