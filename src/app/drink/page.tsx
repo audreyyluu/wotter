@@ -60,6 +60,7 @@ export default function Drink() {
             alt="profile"
             onMouseEnter={() => setProfileIsHovered(true)}
             onMouseLeave={() => setProfileIsHovered(false)}
+            style={{ transform: `scale(${isProfileHovered ? 1.5 : 1})`, transition: 'transform 0.3s ease' }}
           />
         </button>
 
@@ -72,9 +73,10 @@ export default function Drink() {
             alt="bottles"
             onMouseEnter={() => setBottlesIsHovered(true)}
             onMouseLeave={() => setBottlesIsHovered(false)}
+            style={{ transform: `scale(${isBottlesHovered ? 1.5 : 1})`, transition: 'transform 0.3s ease' }}
+
           />
         </a>
-
       </div>
       <p>Main page</p>
       {/* Profile popup */}
