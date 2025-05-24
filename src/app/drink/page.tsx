@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '@/styles/drink.module.css';
 
 export default function Drink() {
   const [showProfile, setShowProfile] = useState(false);
@@ -99,28 +100,11 @@ export default function Drink() {
   };
 
   return (
-    <div
-      style={{
-        backgroundImage: 'url("assets/drink_background.png")',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        height: '100vh',
-        width: 'auto',
-        margin: 0,
-        overflow: 'auto',
-        animation: 'fadeIn 3s'
-      }}>
-      <style>
-        {`
-              @keyframes fadeIn {
-                0% { opacity: 0 }
-                100% { opacity: 100 }
-              }
-            `}
-      </style>
+    <div className={styles['drink-container']}>
       {/* Top left profile button */}
-      <div
-        style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto' }}>
+      <div 
+        style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto', position: 'absolute', top: 0, left: 0 }}
+      >
         <button onClick={() => setShowProfile(true)}>
           <img
             src={profileIcon}
@@ -145,43 +129,14 @@ export default function Drink() {
         </a>
       </div>
       {/* Bottom left shell count */}
-      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'fixed', bottom: 0, margin: '1rem' }}>
-        <img src="/assets/buttons/shell.png" alt="shell" style={{ width: 50, height: 50 }} />
-        <span style={{ fontSize: 24, color: '#fff', fontWeight: 700, marginLeft: 8 }}>{shells}</span>
+      <div className={styles['shell-count-container']}>
+        <img src="/assets/buttons/shell.png" alt="shell" className={styles['shell-icon']} />
+        <span className={styles['shell-count']}>{shells}</span>
       </div>
       {/* Centered content with vertical progress bar to the left */}
-      <div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 10,
-          pointerEvents: 'none',
-        }}
-      >
+      <div className={styles['center-content-container']}>
         {/* Vertical Progress Bar */}
-        <div
-          style={{
-            height: '60vh',
-            width: 40,
-            background: '#eee',
-            borderRadius: 20,
-            overflow: 'hidden',
-            marginRight: 48, // more space between bar and content
-            border: '2px solid #fff',
-            display: 'flex',
-            flexDirection: 'column-reverse',
-            alignItems: 'center',
-            position: 'relative',
-            pointerEvents: 'auto',
-          }}
-        >
+        <div className={styles['progress-bar']}>
           <div
             style={{
               width: '100%',
@@ -190,141 +145,52 @@ export default function Drink() {
               transition: 'height 0.3s',
             }}
           />
-          <span
-        style={{
-          position: 'absolute',
-          top: 8,
-          left: 0,
-          right: 0,
-          textAlign: 'center',
-          color: '#0074D9',
-          fontWeight: 700,
-          fontSize: 16,
-          textShadow: '0 1px 2px #fff',
-        }}
-          >
-        {remaining} oz
+          <span className={styles['progress-amount']}>
+            {remaining} oz
           </span>
         </div>
         {/* Center content */}
-        <div
-          style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        pointerEvents: 'auto',
-          }}
-        >
+        <div className={styles['center-water-container']}>
           {/* Set Goal Button */}
-          <button
-        style={{
-          marginRight: 24,
-          padding: '0.5rem 1rem',
-          borderRadius: 8,
-          border: '1px solid #0074D9',
-          background: '#fff',
-          color: '#0074D9',
-          fontWeight: 600,
-        }}
-        onClick={() => setShowGoalPopup(true)}
-          >
-        Set Goal
+          <button className={styles['set-goal']} onClick={() => setShowGoalPopup(true)}>
+            Set Goal
           </button>
           {/* Water Bottle Image with floating animation */}
           <img
-        src="/assets/buttons/bottles.png"
-        alt="Water Bottle"
-        style={{
-          height: '60vh',
-          animation: 'float-bottle 3s ease-in-out infinite',
-        }}
+            src="/assets/buttons/bottles.png"
+            alt="Water Bottle"
+            className={styles['floating-bottle']}
           />
-          {/* Floating animation keyframes */}
-          <style>
-        {`
-          @keyframes float-bottle {
-            0% { transform: translateY(0) rotate(-2deg); }
-            25% { transform: translateY(-10px) rotate(2deg);}
-            50% { transform: translateY(0) rotate(-2deg);}
-            75% { transform: translateY(10px) rotate(2deg);}
-            100% { transform: translateY(0) rotate(-2deg);}
-          }
-        `}
-          </style>
           {/* Add/Remove Water */}
-          <div style={{ display: 'flex', alignItems: 'center', marginTop: 16 }}>
-        <button
-          onClick={handleRemoveWater}
-          style={{
-            fontSize: 24,
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            border: '1px solid #0074D9',
-            background: '#fff',
-            color: '#0074D9',
-            fontWeight: 700,
-            marginRight: 16,
-            cursor: 'pointer',
-          }}
-          aria-label="Remove water"
-        >
-          -
-        </button>
-        <span
-          style={{
-            fontSize: 24,
-            fontWeight: 700,
-            color: '#fff',
-            minWidth: 80,
-            textAlign: 'center',
-          }}
-        >
-          {water} oz
-        </span>
-        <button
-          onClick={handleAddWater}
-          style={{
-            fontSize: 24,
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            border: '1px solid #0074D9',
-            background: '#fff',
-            color: '#0074D9',
-            fontWeight: 700,
-            marginLeft: 16,
-            cursor: 'pointer',
-          }}
-          aria-label="Add water"
-        >
-          +
-        </button>
+          <div className={styles['edit-water-container']}>
+            <button
+              onClick={handleRemoveWater}
+              className={styles['change-water-button']}
+              aria-label="Remove water"
+            >
+              -
+            </button>
+            <span className={styles['water-amount']}>
+              {water} oz
+            </span>
+            <button
+              onClick={handleAddWater}
+              className={styles['change-water-button']}
+              aria-label="Add water"
+            >
+              +
+            </button>
           </div>
         </div>
       </div>
       {/* Profile popup */}
       {showProfile && (
         <div
-          style={{
-            position: 'fixed',
-            top: 0, left: 0, width: '100vw', height: '100vh',
-            background: 'rgba(0,0,0,0.3)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            zIndex: 1000
-          }}
+          className={styles['profile-button']}
           onClick={() => setShowProfile(false)}
         >
           <div
-            style={{
-              background: '#fff',
-              padding: '2rem',
-              borderRadius: 8,
-              minWidth: 300,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              position: 'relative'
-            }}
+            className={styles['profile-container']}
             onClick={e => e.stopPropagation()}
           >
             <h3>Profile Information</h3>
@@ -352,27 +218,11 @@ export default function Drink() {
       {/* Goal popup */}
       {showGoalPopup && (
         <div
-          style={{
-            position: 'fixed',
-            top: 0, left: 0, width: '100vw', height: '100vh',
-            background: 'rgba(0,0,0,0.3)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            zIndex: 1001
-          }}
+          className={styles['set-goal-button']}
           onClick={() => setShowGoalPopup(false)}
         >
           <form
-            style={{
-              background: '#fff',
-              padding: '2rem',
-              borderRadius: 8,
-              minWidth: 300,
-              boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center'
-            }}
+            className={styles['set-goal-form']}
             onClick={e => e.stopPropagation()}
             onSubmit={handleGoalSubmit}
           >
