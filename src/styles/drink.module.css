@@ -22,15 +22,6 @@
     animation: fadeIn 3s;
 }
 
-.profile-button {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 1rem;
-    width: 7vw;
-    height: auto;
-}
-
 .shell-count-container {
     display: flex;
     justify-content: flex-start;

@@ -102,7 +102,9 @@ export default function Drink() {
   return (
     <div className={styles['drink-container']}>
       {/* Top left profile button */}
-      <div className={styles['profile-button']}>
+      <div 
+        style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto', position: 'absolute', top: 0, left: 0 }}
+      >
         <button onClick={() => setShowProfile(true)}>
           <img
             src={profileIcon}
