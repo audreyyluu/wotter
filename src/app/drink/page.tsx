@@ -32,12 +32,6 @@ export default function Drink() {
         </a>
       </div>
       <p>Main page</p>
-      {/* Bottom left stamp card button */}
-      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', position: 'fixed', bottom: 0, margin: '1rem' }}>
-        <a href="/stamp">
-          <button>Stamp Card</button>
-        </a>
-      </div>
       {/* Profile popup */}
       {showProfile && (
         <div
