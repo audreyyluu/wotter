@@ -157,7 +157,7 @@ export default function Drink() {
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem' }}>
           {/* Vertical Progress Bar */}
           <div style={{
-            height: '40vh', // about half the page
+            height: '60vh', // about half the page
             width: 40,
             background: '#eee',
             borderRadius: 20,
@@ -189,8 +189,27 @@ export default function Drink() {
               {remaining} oz
             </span>
           </div>
-          {/* Water Bottle Image */}
-          <img src="/assets/buttons/bottles.png" alt="Water Bottle" style={{ height: '40vh' }} />
+          {/* Water Bottle Image with floating animation */}
+          <img
+            src="/assets/buttons/bottles.png"
+            alt="Water Bottle"
+            style={{
+              height: '60vh',
+              animation: 'float-bottle 3s ease-in-out infinite',
+            }}
+          />
+          {/* Floating animation keyframes */}
+          <style>
+            {`
+              @keyframes float-bottle {
+                0% { transform: translateY(0) rotate(-2deg); }
+                25% { transform: translateY(-10px) rotate(2deg);}
+                50% { transform: translateY(0) rotate(-2deg);}
+                75% { transform: translateY(10px) rotate(2deg);}
+                100% { transform: translateY(0) rotate(-2deg);}
+              }
+            `}
+          </style>
         </div>
         {/* Add/Remove Water */}
         <div style={{ display: 'flex', alignItems: 'center', marginTop: 16 }}>
