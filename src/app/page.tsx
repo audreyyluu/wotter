@@ -31,8 +31,10 @@ export default function Home() {
         height: '100vh',
         width: 'auto',
         margin: 0,
-        overflow: 'auto'
-      }}>
+        overflow: 'auto',
+
+      }}
+      className={styles['background-fadeIn']}>
       <img
         src="assets/logo.png"
         alt="bottles"
@@ -43,41 +45,41 @@ export default function Home() {
       <div style={{ maxWidth: 400, margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: 36 }}>
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: '1rem' }}>
-              <input
-                type="text"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                required
-                placeholder=" 🦦  Username"
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
-              />
+            <input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              placeholder=" 🦦  Username"
+              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
+            />
           </div>
           <div style={{ marginBottom: '1rem' }}>
-              <input
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required
-                placeholder=" 🐚  Password"
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
-              />
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              placeholder=" 🐚  Password"
+              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
+            />
           </div>
           {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
           <div style={{ display: 'flex', justifyContent: 'center', }}>
-          <button
-            type="submit"
-            style={{
-              width: '40%',
-              padding: '0.75rem',
-              borderRadius: 36,
-              background: '#208609',
-              color: 'white',
-              border: 'none'
-            }}
-          >
-            Login
-          </button>
-        </div>
+            <button
+              type="submit"
+              style={{
+                width: '40%',
+                padding: '0.75rem',
+                borderRadius: 36,
+                background: '#208609',
+                color: 'white',
+                border: 'none'
+              }}
+            >
+              Login
+            </button>
+          </div>
 
         </form>
         <div style={{ marginTop: '1rem', textAlign: 'center', justifyContent: 'center' }}>
