@@ -15,8 +15,13 @@ export default function Signup() {
       setError('Please enter a username and password.');
       return;
     }
-    localStorage.setItem('wotter_username', username);
-    localStorage.setItem('wotter_password', password);
+    const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
+    if (users[username]) {
+      setError('Username already exists.');
+      return;
+    }
+    users[username] = password;
+    localStorage.setItem('wotter_users', JSON.stringify(users));
     setError('');
     router.push('/');
   };
