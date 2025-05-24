@@ -1,11 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
 
 export default function Drink() {
   const [showProfile, setShowProfile] = useState(false);
   const router = useRouter();
+
+
+  const [isProfileHovered, setProfileIsHovered] = useState(false);
+  const [isBottlesHovered, setBottlesIsHovered] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.margin = '0'; // correct
+    document.documentElement.style.padding = '0'; // correct
+    document.body.style.margin = '0';
+    document.body.style.padding = '0';
+  }, []);
+
+  const profileIcon = isProfileHovered
+    ? '/assets/buttons/profile_hover.png'
+    : '/assets/buttons/profile.png';
+
+
+  const bottlesIcon = isBottlesHovered
+    ? '/assets/buttons/bottles_hover.png'
+    : '/assets/buttons/bottles.png';
 
   let username = '';
   let password = '';
@@ -20,16 +41,40 @@ export default function Drink() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: 'url("assets/drink_background.png")',
+        backgroundSize: 'cover', // Optional: Adjust how the image is sized
+        backgroundRepeat: 'no-repeat', // Optional: Prevent the image from repeating
+        height: '100vh', // Optional: Set a height for the element
+        width: 'auto', // Optional: Set a width for the element
+        margin: 0
+      }}>
       {/* Top left profile button */}
-      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem' }}>
-        <button onClick={() => setShowProfile(true)}>Profile</button>
+      <div
+
+        style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto' }}>
+        <button onClick={() => setShowProfile(true)}>
+          <img
+            src={profileIcon}
+            alt="profile"
+            onMouseEnter={() => setProfileIsHovered(true)}
+            onMouseLeave={() => setProfileIsHovered(false)}
+          />
+        </button>
+
       </div>
       {/* Top right bottles button */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start', margin: '1rem', position: 'absolute', top: 0, right: 0 }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto', position: 'absolute', top: 0, right: 0 }}>
         <a href="/bottles">
-          <button>Wotter Bottles</button>
+          <img
+            src={bottlesIcon}
+            alt="bottles"
+            onMouseEnter={() => setBottlesIsHovered(true)}
+            onMouseLeave={() => setBottlesIsHovered(false)}
+          />
         </a>
+
       </div>
       <p>Main page</p>
       {/* Profile popup */}
