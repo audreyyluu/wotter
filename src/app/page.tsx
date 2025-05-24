@@ -23,7 +23,16 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundImage: 'url("assets/login_background.png")',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh',
+        width: 'auto',
+        margin: 0,
+        overflow: 'auto'
+      }}>
       <img
         src="assets/logo.png"
         alt="bottles"
