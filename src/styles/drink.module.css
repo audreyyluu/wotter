@@ -1,0 +1,192 @@
+@keyframes fadeIn {
+    0% { opacity: 0 }
+    100% { opacity: 100 }
+}
+
+@keyframes float-bottle {
+    0% { transform: translateY(0) rotate(-2deg); }
+    25% { transform: translateY(-10px) rotate(2deg);}
+    50% { transform: translateY(0) rotate(-2deg);}
+    75% { transform: translateY(10px) rotate(2deg);}
+    100% { transform: translateY(0) rotate(-2deg);}
+}
+
+.drink-container {
+    background-image: url("/assets/drink_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: auto;
+    margin: 0;
+    overflow: auto;
+    animation: fadeIn 3s;
+}
+
+.profile-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 1rem;
+    width: 7vw;
+    height: auto;
+}
+
+.shell-count-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    margin: 1rem;
+}
+
+.shell-icon {
+    width: 50;
+    height: 50;
+}
+
+.shell-count {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 700;
+    margin-left: 8px;
+}
+
+.center-content-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.progress-bar {
+    height: 60vh;
+    width: 40px;
+    background: #eee;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-right: 48px; /* more space between bar and content */
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    position: relative;
+    pointer-events: auto;
+}
+
+.progress-amount {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #0074D9;
+    font-weight: 700;
+    font-size: 16px;
+    text-shadow: 0 1px 2px #fff;
+}
+
+.center-water-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.set-goal {
+    margin-right: 24px;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #0074D9;
+    background: #fff;
+    color: #0074D9;
+    font-weight: 600;
+}
+
+.floating-bottle {
+    height: 60vh;
+    animation: float-bottle 3s ease-in-out infinite;
+}
+
+.edit-water-container {
+    display: flex;
+    align-items: center;
+    margin-top: 16;
+}
+
+.change-water-button {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #0074D9;
+    background: #fff;
+    color: #0074D9;
+    font-weight: 700;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.water-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    min-width: 80px;
+    text-align: center;
+}
+
+.profile-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.profile-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.set-goal-button {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.set-goal-form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
