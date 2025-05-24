@@ -1,44 +1,63 @@
 'use client';
-import { useState } from "react"
+import { useState, useEffect } from "react";
 
-function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string }){
-
+function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string, shells: number, setShells: (n: number) => void }) {
   function handleBuy() {
-
-    let value
     const bottleID = `bought-${props.color}`;
-    try{
-      value = localStorage.getItem(bottleID) || false
-    } catch (error) {}
-    
+    const username = localStorage.getItem('wotter_current_user') || '';
+    const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
+    const water = userData.water || 0;
+    const goal = userData.goal || 64;
+    const shells = props.shells;
+    const newShells = shells - props.price;
+    if (newShells < 0) {
+      alert("You don't have enough shells to buy this bottle!");
+      return;
+    } else {
+      const newUserData = { ...userData, goal, water, shells: newShells };
+      localStorage.setItem(`wotter_data_${username}`, JSON.stringify(newUserData));
+      props.setShells(newShells); // update state, triggers Shell re-render
+    }
     document.getElementById(`bottle-${props.color}`)?.setAttribute('src', props.locked);
-
-    localStorage.setItem(bottleID, "true")
-
+    localStorage.setItem(bottleID, "true");
     const btn = document.getElementById(`btn-${props.color}`) as HTMLButtonElement | null;
     if (btn) {
       btn.disabled = true;
       btn.style.opacity = "0.5";
       btn.style.cursor = "not-allowed";
     }
- 
-    // alert(`You bought a ${props.color} bottle for $${props.price}!`);
   }
 
   return (
     <div>
-      {/* <h2>I am a {props.color} Bottle!</h2> */}
       <img id={`bottle-${props.color}`} src={props.image} alt={props.alt} style={{ width: 250 }} />
-      {/* <h2>Price: {props.price}</h2> */}
       <button id={`btn-${props.color}`} style={{ backgroundColor: props.color, color: 'white', padding: '0.5rem 1rem', border: 'none', borderRadius: '20px' }} onClick={handleBuy}>
-        {/* Buy {props.color} Bottle */}
         Buy for {props.price} Shells
-        </button>
+      </button>
+    </div>
+  );
+}
+
+function Shell({ shells }: { shells: number }) {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', position: 'fixed', bottom: 0, margin: '1rem' }}>
+      <img src="/assets/buttons/shell.png" alt="shell" style={{ width: 50, height: 50 }} />
+      <span style={{ fontSize: 24, color: '#fff', fontWeight: 700, marginLeft: 8 }}>{shells}</span>
     </div>
   );
 }
 
 export default function Bottles() {
+  const [shells, setShells] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const username = localStorage.getItem('wotter_current_user') || '';
+      const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
+      setShells(userData.shells || 0);
+    }
+  }, []);
+
   return (
     <div>
       <p>Bottles page</p>
@@ -47,9 +66,16 @@ export default function Bottles() {
           <button>Go Drink</button>
         </a>
       </div>
-      <Bottle 
-        color={"Blue"} price={5} image={"./bottles/bottles.png"} locked={"./bottles/bottle_locked.png"} alt={"Blue Bottle"}
+      <Bottle
+        color={"Blue"}
+        price={5}
+        image={"./bottles/bottles.png"}
+        locked={"./bottles/bottle_locked.png"}
+        alt={"Blue Bottle"}
+        shells={shells}
+        setShells={setShells}
       />
+      <Shell shells={shells} />
     </div>
   );
 }
