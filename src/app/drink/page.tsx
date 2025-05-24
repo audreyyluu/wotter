@@ -48,7 +48,8 @@ export default function Drink() {
         backgroundRepeat: 'no-repeat', // Optional: Prevent the image from repeating
         height: '100vh', // Optional: Set a height for the element
         width: 'auto', // Optional: Set a width for the element
-        margin: 0
+        margin: 0,
+        overflow: 'auto',
       }}>
       {/* Top left profile button */}
       <div
