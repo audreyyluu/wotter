@@ -1,16 +1,60 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 export default function Home() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    const storedUser = localStorage.getItem('wotter_username');
+    const storedPass = localStorage.getItem('wotter_password');
+    if (username === storedUser && password === storedPass) {
+      setError('');
+      router.push('/drink');
+    } else {
+      setError('Invalid credentials. Please sign up if you do not have an account.');
+    }
+  };
+
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start', margin: '1rem' }}>
-        <a href="/bottles">
-          <button>Wotter Bottles</button>
-        </a>
-      </div>
-      <p>Main page</p>
-      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', position: 'fixed', bottom: 0, margin: '1rem' }}>
-        <a href="/stamp">
-          <button>Stamp Card</button>
-        </a>
+    <div style={{ maxWidth: 400, margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: 8 }}>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem' }}
+            />
+          </label>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem' }}
+            />
+          </label>
+        </div>
+        {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
+        <button type="submit" style={{ width: '100%', padding: '0.75rem' }}>Login</button>
+      </form>
+      <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+        <span>Don't have an account? </span>
+        <a href="/signup" style={{ color: 'blue', textDecoration: 'underline' }}>Sign up</a>
       </div>
     </div>
   );
