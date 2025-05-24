@@ -37,5 +37,5 @@
     display: block;
     margin: auto;
     margin-top: 2vh;
-    animation: fadeIn 7s, float 3s ease-in-out infinite;
+    animation: fadeIn 5s, float 3s ease-in-out infinite;
 }

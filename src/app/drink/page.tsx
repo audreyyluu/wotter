@@ -147,6 +147,7 @@ export default function Drink() {
         alignItems: 'center',
         justifyContent: 'center',
         height: '80vh',
+        marginTop: '-10vh'
       }}>
         {/* Set Goal Button */}
         <button
