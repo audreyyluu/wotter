@@ -49,7 +49,7 @@ export default function Drink() {
         height: '100vh', // Optional: Set a height for the element
         width: 'auto', // Optional: Set a width for the element
         margin: 0,
-        overflow: 'auto',
+        overflow: 'auto'
       }}>
       {/* Top left profile button */}
       <div
@@ -61,7 +61,7 @@ export default function Drink() {
             alt="profile"
             onMouseEnter={() => setProfileIsHovered(true)}
             onMouseLeave={() => setProfileIsHovered(false)}
-            style={{ transform: `scale(${isProfileHovered ? 1.5 : 1})`, transition: 'transform 0.3s ease' }}
+            style={{ transform: `scale(${isProfileHovered ? 1.25 : 1})`, transition: 'transform 0.3s ease' }}
           />
         </button>
 
@@ -74,7 +74,7 @@ export default function Drink() {
             alt="bottles"
             onMouseEnter={() => setBottlesIsHovered(true)}
             onMouseLeave={() => setBottlesIsHovered(false)}
-            style={{ transform: `scale(${isBottlesHovered ? 1.5 : 1})`, transition: 'transform 0.3s ease' }}
+            style={{ transform: `scale(${isBottlesHovered ? 1.25 : 1})`, transition: 'transform 0.3s ease' }}
 
           />
         </a>
