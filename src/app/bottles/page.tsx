@@ -41,12 +41,13 @@ function Bottle({
           height: 600,
           borderRadius: 20,
           boxShadow: isSelected
-            ? '0 0 60px 30px #fff, 0 0 100px 60px #f0f, 0 0 140px 90px #0ff'
+            ? '0 0 20px 10px #fff, 0 0 40px 20px #f0f, 0 0 60px 25px #0ff'
             : 'none',
-          cursor: isBought ? 'default' : 'pointer'
+          cursor: isBought ? 'default' : 'pointer',
+          zIndex: 2
       }}
       />
-      
+    
       {!isBought ? (
         <button
           id={`btn-${color}`}
