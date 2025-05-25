@@ -1,36 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Learn more about Wotter [here](https://devpost.com/software/wotter)!
 
-## Getting Started
+### The Problem
+Every cell in your body depends on water, yet many people walk around daily in a state of silent dehydration. What seems like just a forgotten glass of water can lead to fatigue, headaches, poor focus, and even long-term health issues. You may be unintentionally harming your body by simply not drinking enough. That's where Wotter comes in.
 
-First, run the development server:
+### What it does
+Wotter is a fun and engaging hydration tracker that helps you stay on top of your daily water intake. Set a personalized hydration goal, log each sip, and watch your progress grow. For every ounce of water you drink, collect shells and redeem them for digital Wotter Bottles.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Stay refreshed, stay motivated, with Wotter.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How we built it
+We built Wotter with Next.js, React, CSS, JavaScript, hand drawn art, and by drinking lots of water! We created custom React components, reactive JavaScript functions, and intuitive and engaging styling.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Hand Drawn Art
+The highlight of our captivating user interface is our hand drawn art. Every background and image on our web app was drawn by hand with great care and detail.

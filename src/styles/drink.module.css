@@ -106,7 +106,6 @@
     border-radius: 20px;
     overflow: hidden;
     margin-right: 48px;
-    /* more space between bar and content */
     border: 2px solid #fff;
     display: flex;
     flex-direction: column-reverse;
@@ -177,7 +176,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -185,12 +184,56 @@
 }
 
 .profile-container {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    min-width: 300px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: rgb(223, 235, 242);
+    opacity: .92;
+    width: 350px;
+    height: 350px;
+    padding: 3rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 36px rgb(206, 235, 250);
     position: relative;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.profile-title {
+    text-align: center;
+    width: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.profile-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
+.profile-logout {
+    margin-top: auto;
+    align-self: center;
+    padding: 0.5rem 2rem;
+    border-radius: 36px;
+    background: rgb(80, 136, 167);
+    color: #fff;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.profile-logout:hover {
+    background: #005fa3;
 }
 
 .set-goal-button {

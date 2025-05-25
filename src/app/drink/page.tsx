@@ -235,24 +235,20 @@ export default function Drink() {
             className={styles['profile-container']}
             onClick={e => e.stopPropagation()}
           >
-            <h3>Profile Information</h3>
-            <div style={{ marginBottom: '1rem' }}>
-              <strong>Username:</strong> {username}
-            </div>
-            <div style={{ marginBottom: '1rem' }}>
-              <strong>Password:</strong> {password}
+            <h3 className={styles['profile-title']}>Profile</h3>
+            <div className={styles['profile-info']}>
+              <div style={{ marginBottom: '1rem' }}>
+                <strong>Username:</strong> {username}
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <strong>Password:</strong> {password}
+              </div>
             </div>
             <button
-              style={{ padding: '0.5rem 1rem', borderRadius: 4, border: 'none' }}
+              className={styles['profile-logout']}
               onClick={handleLogout}
             >
               Logout
-            </button>
-            <button
-              style={{ marginLeft: '1rem', padding: '0.5rem 1rem', borderRadius: 4 }}
-              onClick={() => setShowProfile(false)}
-            >
-              Close
             </button>
           </div>
         </div>
@@ -264,24 +260,24 @@ export default function Drink() {
           onClick={() => setShowGoalPopup(false)}
         >
           <form
-            className={styles['set-goal-form']}
+            className={styles['profile-container']}
             onClick={e => e.stopPropagation()}
             onSubmit={handleGoalSubmit}
           >
-            <h3>Set Daily Goal</h3>
+            <h3 style={{ textAlign: 'center', width: '100%', marginTop: '1.5rem', marginBottom: '1rem', fontSize: '20px', fontWeight: 700 }}>Set Daily Goal</h3>
             <input
               type="number"
               min={1}
               value={goalInput}
               onChange={e => setGoalInput(e.target.value)}
-              placeholder="Enter goal in oz"
-              style={{ padding: '0.5rem', fontSize: 18, marginBottom: '1rem', width: '80%' }}
+              placeholder=" Enter goal in oz"
+              style={{ padding: '0.5rem', fontSize: 18, borderRadius:36, marginBottom: '1rem', width: '80%' }}
               required
             />
             <div>
               <button
                 type="submit"
-                style={{ padding: '0.5rem 1rem', borderRadius: 4, border: 'none', background: '#0074D9', color: '#fff', fontWeight: 600 }}
+                style={{ padding: '0.5rem 1rem', borderRadius: 36, border: 'none', background: '#0074D9', color: '#fff', fontWeight: 600 }}
               >
                 Save
               </button>
