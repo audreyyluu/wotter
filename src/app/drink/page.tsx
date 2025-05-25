@@ -15,6 +15,9 @@ export default function Drink() {
 
   const [isProfileHovered, setProfileIsHovered] = useState(false);
   const [isBottlesHovered, setBottlesIsHovered] = useState(false);
+  const [isSetGoalHovered, setSetGoalIsHovered] = useState(false);
+  const [isMinusHovered, setMinusIsHovered] = useState(false);
+  const [isPlusHovered, setPlusIsHovered] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.margin = '0';
@@ -151,7 +154,13 @@ export default function Drink() {
         {/* Center content */}
         <div className={styles['center-water-container']}>
           {/* Set Goal Button */}
-          <button className={styles['set-goal']} onClick={() => setShowGoalPopup(true)}>
+          <button
+            className={styles['set-goal']}
+            onClick={() => setShowGoalPopup(true)}
+            onMouseEnter={() => setSetGoalIsHovered(true)}
+            onMouseLeave={() => setSetGoalIsHovered(false)}
+            style={{ transform: `scale(${isSetGoalHovered ? 1.15 : 1})`, transition: 'transform 0.3s ease' }}
+          >
             <img src="/assets/buttons/set_goal_button.png" alt="Set Goal" />
           </button>
           {/* Water Bottle Image with floating animation */}
@@ -166,6 +175,9 @@ export default function Drink() {
               onClick={handleRemoveWater}
               className={styles['change-water-button']}
               aria-label="Remove water"
+              onMouseEnter={() => setMinusIsHovered(true)}
+              onMouseLeave={() => setMinusIsHovered(false)}
+              style={{ transform: `scale(${isMinusHovered ? 1.25 : 1})`, transition: 'transform 0.3s ease' }}
             >
               <img src="/assets/buttons/decrease_button.png" alt="minus" />
             </button>
@@ -176,6 +188,9 @@ export default function Drink() {
               onClick={handleAddWater}
               className={styles['change-water-button']}
               aria-label="Add water"
+              onMouseEnter={() => setPlusIsHovered(true)}
+              onMouseLeave={() => setPlusIsHovered(false)}
+              style={{ transform: `scale(${isPlusHovered ? 1.25 : 1})`, transition: 'transform 0.3s ease' }}
             >
               <img src="/assets/buttons/increase_button.png" alt="plus" />
             </button>
