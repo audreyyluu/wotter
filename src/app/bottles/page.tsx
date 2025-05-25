@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from "react";
+import Link from "next/link";
 // localStorage.clear()
 
 type BottleProps = {
@@ -186,12 +187,18 @@ export default function Bottles() {
       margin: 0,
       overflow: 'auto',
     }}>
-      <p>Bottles page</p>
-      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', position: 'fixed', bottom: 0, margin: '1rem' }}>
-        <a href="/drink">
-          <button>Go Drink</button>
-        </a>
-      </div>
+      <Link href="/drink" style={{ display: 'inline-block', width: 'fit-content', padding: '1rem' }}>
+        <img
+          src="/assets/buttons/back.png"
+          alt="back button"
+          style={{
+            display: 'block',
+            width: 50,
+            height: 'auto',
+            filter: 'invert(1)',
+          }}
+        />
+      </Link>
       <div style={{ display: 'flex', gap: 32, marginTop: 40, justifyContent: 'center' }}>
         <Bottle
           color="blue"
