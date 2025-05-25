@@ -35,7 +35,8 @@ function Bottle({
       <img
         id={`bottle-${color}`}
         className ={'main'}
-        src={isBought && !isSelected ? locked : image}
+        // src={isBought && !isSelected ? locked : image}
+        src={isSelected ? image : isBought ? image : locked}
         alt={alt}
         style={{
           // width: 250,
