@@ -37,5 +37,43 @@
     display: block;
     margin: auto;
     margin-top: 2vh;
-    animation: fadeIn 5s, float 3s ease-in-out infinite;
+    animation: fadeIn 8s, float 3s ease-in-out infinite;
+}
+
+.background-fadeIn {
+    animation: fadeIn 3s;
+}
+
+.loginBox {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 36px;
+}
+
+.inputBox {
+  margin-bottom: 1rem;
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 36px;
+  color: black;
+}
+
+.loginButton {
+  width: 40%;
+  padding: 0.75rem;
+  border-radius: 36px;
+  background: #208609;
+  color: white;
+  border: none;
+}
+
+.centeredRow {
+  display: flex;
+  justify-content: center;
 }

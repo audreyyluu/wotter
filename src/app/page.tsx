@@ -31,8 +31,10 @@ export default function Home() {
         height: '100vh',
         width: 'auto',
         margin: 0,
-        overflow: 'auto'
-      }}>
+        overflow: 'auto',
+
+      }}
+      className={styles['background-fadeIn']}>
       <img
         src="assets/logo.png"
         alt="bottles"
@@ -40,39 +42,42 @@ export default function Home() {
         className={styles['animation-fadeIn']}
 
       />
-      <div style={{ maxWidth: 400, margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: 8 }}>
-        <h2>Login</h2>
+      <div className={styles.loginBox}>
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: '1rem' }}>
-            <label>
-              Username:
-              <input
-                type="text"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                required
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem' }}
-              />
-            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              placeholder=" 🦦  Username"
+              className={styles.inputField}
+            />
           </div>
           <div style={{ marginBottom: '1rem' }}>
-            <label>
-              Password:
-              <input
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required
-                style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem' }}
-              />
-            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              placeholder=" 🐚  Password"
+              className={styles.inputField}
+            />
           </div>
           {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-          <button type="submit" style={{ width: '100%', padding: '0.75rem' }}>Login</button>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <button
+              type="submit"
+              className={styles.loginButton}
+            >
+              Login
+            </button>
+          </div>
+
         </form>
-        <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+        <div style={{ marginTop: '1rem', textAlign: 'center', justifyContent: 'center' }}>
           <span>Don't have an account? </span>
-          <a href="/signup" style={{ color: 'blue', textDecoration: 'underline' }}>Sign up</a>
+          <a href="/signup" style={{ color: 'blue', textDecoration: 'underline' }}>Sign up!</a>
         </div>
       </div>
     </div>
