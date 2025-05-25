@@ -140,7 +140,7 @@ export default function Drink() {
             style={{
               width: '100%',
               height: `${progressPercent}%`,
-              background: '#4295e2',
+              background: 'linear-gradient(to top, #4295e2 0%, #aee7ff 100%)',
               transition: 'height 0.3s',
             }}
           />
