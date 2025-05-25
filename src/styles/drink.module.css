@@ -175,3 +175,12 @@
     align-items: center;
 }
 
+.floating-otter {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: auto;
+    margin: 2rem;
+    animation: float-bottle 3s ease-in-out infinite;
+}

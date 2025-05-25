@@ -18,6 +18,15 @@ export default function Drink() {
   const [isSetGoalHovered, setSetGoalIsHovered] = useState(false);
   const [isMinusHovered, setMinusIsHovered] = useState(false);
   const [isPlusHovered, setPlusIsHovered] = useState(false);
+  const [otterBlink, setOtterBlink] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOtterBlink(true);
+      setTimeout(() => setOtterBlink(false), 100);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     document.documentElement.style.margin = '0';
@@ -136,6 +145,12 @@ export default function Drink() {
         <img src="/assets/buttons/shell.png" alt="shell" className={styles['shell-icon']} />
         <span className={styles['shell-count']}>{shells}</span>
       </div>
+      {/* Bottom right floating otter */}
+      <img
+        src={otterBlink ? "/assets/otter_blink.png" : "/assets/otter.png"}
+        alt="otter"
+        className={styles['floating-otter']}
+      />
       {/* Centered content with vertical progress bar to the left */}
       <div className={styles['center-content-container']}>
         {/* Vertical Progress Bar */}
