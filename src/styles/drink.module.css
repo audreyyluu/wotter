@@ -106,7 +106,6 @@
     border-radius: 20px;
     overflow: hidden;
     margin-right: 48px;
-    /* more space between bar and content */
     border: 2px solid #fff;
     display: flex;
     flex-direction: column-reverse;
@@ -196,7 +195,7 @@
     color: black;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center children horizontally */
+    align-items: center;
     justify-content: center;
     gap: 1rem;
 }
@@ -214,7 +213,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Left align username/password */
+    align-items: flex-start;
     margin-bottom: 1rem;
     font-size: 18px;
 }
@@ -222,11 +221,11 @@
 .profile-logout {
     margin-top: auto;
     align-self: center;
-    padding: 0.5rem 2rem;      /* Rectangle shape */
-    border-radius: 36px;        /* Slightly rounded corners, or set to 0 for sharp corners */
-    background: rgb(80, 136, 167);       /* Example blue background */
-    color: #fff;               /* White text */
-    border: none;              /* No border */
+    padding: 0.5rem 2rem;
+    border-radius: 36px;
+    background: rgb(80, 136, 167);
+    color: #fff;
+    border: none;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -234,7 +233,7 @@
 }
 
 .profile-logout:hover {
-    background: #005fa3;       /* Darker on hover */
+    background: #005fa3;
 }
 
 .set-goal-button {
