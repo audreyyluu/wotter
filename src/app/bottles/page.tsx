@@ -38,7 +38,7 @@ function Bottle({
         alt={alt}
         style={{
           // width: 250,
-          height: 600,
+          height: 450,
           borderRadius: 20,
           boxShadow: isSelected
             ? '0 0 20px 10px #fff, 0 0 40px 20px #f0f, 0 0 60px 25px #0ff'
