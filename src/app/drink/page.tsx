@@ -222,24 +222,20 @@ export default function Drink() {
             className={styles['profile-container']}
             onClick={e => e.stopPropagation()}
           >
-            <h3>Profile Information</h3>
-            <div style={{ marginBottom: '1rem' }}>
-              <strong>Username:</strong> {username}
-            </div>
-            <div style={{ marginBottom: '1rem' }}>
-              <strong>Password:</strong> {password}
+            <h3 className={styles['profile-title']}>Profile</h3>
+            <div className={styles['profile-info']}>
+              <div style={{ marginBottom: '1rem' }}>
+                <strong>Username:</strong> {username}
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <strong>Password:</strong> {password}
+              </div>
             </div>
             <button
-              style={{ padding: '0.5rem 1rem', borderRadius: 4, border: 'none' }}
+              className={styles['profile-logout']}
               onClick={handleLogout}
             >
               Logout
-            </button>
-            <button
-              style={{ marginLeft: '1rem', padding: '0.5rem 1rem', borderRadius: 4 }}
-              onClick={() => setShowProfile(false)}
-            >
-              Close
             </button>
           </div>
         </div>
