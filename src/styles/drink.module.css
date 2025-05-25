@@ -1,14 +1,56 @@
 @keyframes fadeIn {
-    0% { opacity: 0 }
-    100% { opacity: 100 }
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 100
+    }
 }
 
 @keyframes float-bottle {
-    0% { transform: translateY(0) rotate(-2deg); }
-    25% { transform: translateY(-10px) rotate(2deg);}
-    50% { transform: translateY(0) rotate(-2deg);}
-    75% { transform: translateY(10px) rotate(2deg);}
-    100% { transform: translateY(0) rotate(-2deg);}
+    0% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    25% {
+        transform: translateY(-10px) rotate(2deg);
+    }
+
+    50% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    75% {
+        transform: translateY(10px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+}
+
+@keyframes float-otter {
+    0% {
+        transform: translateY(0) rotate(2deg);
+    }
+
+    25% {
+
+        transform: translateY(10px) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(0) rotate(2deg);
+    }
+
+    75% {
+        transform: translateY(-10px) rotate(-2deg);
+    }
+
+    100% {
+        transform: translateY(0) rotate(2deg);
+    }
 }
 
 .drink-container {
@@ -63,7 +105,8 @@
     background: #eee;
     border-radius: 20px;
     overflow: hidden;
-    margin-right: 48px; /* more space between bar and content */
+    margin-right: 48px;
+    /* more space between bar and content */
     border: 2px solid #fff;
     display: flex;
     flex-direction: column-reverse;
@@ -134,7 +177,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -146,7 +189,7 @@
     padding: 2rem;
     border-radius: 8px;
     min-width: 300px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     position: relative;
 }
 
@@ -156,7 +199,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -168,7 +211,7 @@
     padding: 2rem;
     border-radius: 8px;
     min-width: 300px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -179,8 +222,8 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 200px;
+    width: 400px;
     height: auto;
     margin: 2rem;
-    animation: float-bottle 3s ease-in-out infinite;
+    animation: float-otter 3s ease-in-out infinite;
 }

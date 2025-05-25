@@ -24,7 +24,7 @@ export default function Drink() {
     const interval = setInterval(() => {
       setOtterBlink(true);
       setTimeout(() => setOtterBlink(false), 100);
-    }, 5000);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
@@ -113,7 +113,7 @@ export default function Drink() {
   return (
     <div className={styles['drink-container']}>
       {/* Top left profile button */}
-      <div 
+      <div
         style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', margin: '1rem', width: '7vw', height: 'auto', position: 'absolute', top: 0, left: 0 }}
       >
         <button onClick={() => setShowProfile(true)}>
@@ -180,7 +180,7 @@ export default function Drink() {
           </button>
           {/* Water Bottle Image with floating animation */}
           <img
-            src="/assets/buttons/bottles.png"
+            src="/assets/bottles/plasticbottle.png"
             alt="Water Bottle"
             className={styles['floating-bottle']}
           />

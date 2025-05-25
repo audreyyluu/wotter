@@ -1,16 +1,16 @@
 'use client';
 import { useState } from "react"
 
-function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string }){
+function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string }) {
 
   function handleBuy() {
 
     let value
     const bottleID = `bought-${props.color}`;
-    try{
+    try {
       value = localStorage.getItem(bottleID) || false
-    } catch (error) {}
-    
+    } catch (error) { }
+
     document.getElementById(`bottle-${props.color}`)?.setAttribute('src', props.locked);
 
     localStorage.setItem(bottleID, "true")
@@ -21,7 +21,7 @@ function Bottle(props: { color: string, price: number, image: string, locked: st
       btn.style.opacity = "0.5";
       btn.style.cursor = "not-allowed";
     }
- 
+
     // alert(`You bought a ${props.color} bottle for $${props.price}!`);
   }
 
@@ -33,21 +33,30 @@ function Bottle(props: { color: string, price: number, image: string, locked: st
       <button id={`btn-${props.color}`} style={{ backgroundColor: props.color, color: 'white', padding: '0.5rem 1rem', border: 'none', borderRadius: '20px' }} onClick={handleBuy}>
         {/* Buy {props.color} Bottle */}
         Buy for {props.price} Shells
-        </button>
+      </button>
     </div>
   );
 }
 
 export default function Bottles() {
   return (
-    <div>
+    <div style={{
+      backgroundImage: 'url("assets/bottles_background.png")',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      height: '100vh',
+      width: 'auto',
+      margin: 0,
+      overflow: 'auto',
+
+    }}>
       <p>Bottles page</p>
       <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', position: 'fixed', bottom: 0, margin: '1rem' }}>
         <a href="/drink">
           <button>Go Drink</button>
         </a>
       </div>
-      <Bottle 
+      <Bottle
         color={"Blue"} price={5} image={"./bottles/bottles.png"} locked={"./bottles/bottle_locked.png"} alt={"Blue Bottle"}
       />
     </div>
