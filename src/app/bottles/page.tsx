@@ -1,8 +1,26 @@
 'use client';
 import { useState, useEffect } from "react";
+// localStorage.clear()
 
 function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string, shells: number, setShells: (n: number) => void }) {
+  const bottleID = `bought-${props.color}`;
+  // Check if the bottle is already bought
+  // let bought = false;
+  const [bought, setBought] = useState(false);
+  // if (typeof window !== "undefined") {
+  //   bought = localStorage.getItem(bottleID) === "true";
+  // }
+
+  useEffect(() => {
+    setBought(localStorage.getItem(bottleID) === "true")
+    console.log("hello from Bottle useEffect");
+  }, []);
+  
   function handleBuy() {
+    if (bought) {
+      // alert("You already bought this bottle!");
+      return;
+    }
     const bottleID = `bought-${props.color}`;
     const username = localStorage.getItem('wotter_current_user') || '';
     const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
@@ -30,9 +48,24 @@ function Bottle(props: { color: string, price: number, image: string, locked: st
 
   return (
     <div>
-      <img id={`bottle-${props.color}`} src={props.image} alt={props.alt} style={{ width: 250 }} />
-      <button id={`btn-${props.color}`} style={{ backgroundColor: props.color, color: 'white', padding: '0.5rem 1rem', border: 'none', borderRadius: '20px' }} onClick={handleBuy}>
-        Buy for {props.price} Shells
+      <img id={`bottle-${props.color}`} 
+      // src={props.image} 
+      src={bought ? props.locked : props.image}
+      alt={props.alt} 
+      style={{ width: 250 }} />
+      <button 
+        id={`btn-${props.color}`} 
+        style={{ 
+          backgroundColor: props.color, 
+          color: 'white', 
+          padding: '0.5rem 1rem', 
+          border: 'none', 
+          borderRadius: '20px' 
+        }} 
+        onClick={handleBuy}
+        disabled={bought}>
+        {/* Buy for {props.price} Shells */}
+        {bought ? "Bought!" : `Buy for ${props.price} Shells`}
       </button>
     </div>
   );
