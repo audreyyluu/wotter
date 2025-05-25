@@ -37,7 +37,7 @@ export default function Drink() {
     // Load user data
     if (typeof window !== 'undefined') {
       const username = localStorage.getItem('wotter_current_user') || '';
-      const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
+      // const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
       const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
       setGoal(userData.goal || 64);
       setWater(userData.water || 0);
