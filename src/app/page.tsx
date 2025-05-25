@@ -76,7 +76,7 @@ export default function Home() {
 
         </form>
         <div style={{ marginTop: '1rem', textAlign: 'center', justifyContent: 'center' }}>
-          <span>Don't have an account? </span>
+          <span>Don&apos;t have an account? </span>
           <a href="/signup" style={{ color: 'blue', textDecoration: 'underline' }}>Sign up!</a>
         </div>
       </div>

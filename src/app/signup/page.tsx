@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import styles from '@/styles/login.module.css';
 
 export default function Signup() {
@@ -74,7 +75,7 @@ export default function Signup() {
         
         </form>
         <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-          <a href="/" style={{ color: 'blue', textDecoration: 'underline' }}>Back to Login</a>
+            <Link href="/" style={{ color: 'blue', textDecoration: 'underline' }}>Back to Login</Link>
         </div>
       </div>
 
