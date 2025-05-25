@@ -42,7 +42,7 @@ export default function Home() {
         className={styles['animation-fadeIn']}
 
       />
-      <div style={{ maxWidth: 400, margin: '2rem auto', padding: '2rem', border: '1px solid #ccc', borderRadius: 36 }}>
+      <div className={styles.loginBox}>
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: '1rem' }}>
             <input
@@ -51,7 +51,7 @@ export default function Home() {
               onChange={e => setUsername(e.target.value)}
               required
               placeholder=" 🦦  Username"
-              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
+              className={styles.inputField}
             />
           </div>
           <div style={{ marginBottom: '1rem' }}>
@@ -61,21 +61,14 @@ export default function Home() {
               onChange={e => setPassword(e.target.value)}
               required
               placeholder=" 🐚  Password"
-              style={{ width: '100%', padding: '0.5rem', marginTop: '0.5rem', borderRadius: 36, color: 'black' }}
+              className={styles.inputField}
             />
           </div>
           {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-          <div style={{ display: 'flex', justifyContent: 'center', }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               type="submit"
-              style={{
-                width: '40%',
-                padding: '0.75rem',
-                borderRadius: 36,
-                background: '#208609',
-                color: 'white',
-                border: 'none'
-              }}
+              className={styles.loginButton}
             >
               Login
             </button>
