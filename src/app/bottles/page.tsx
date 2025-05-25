@@ -2,96 +2,100 @@
 import { useState, useEffect } from "react";
 // localStorage.clear()
 
-function Bottle(props: { color: string, price: number, image: string, locked: string, alt: string, shells: number, setShells: (n: number) => void }) {
-  const bottleID = `bought-${props.color}`;
-  const [bought, setBought] = useState(false);
+type BottleProps = {
+  color: string;
+  price: number;
+  image: string;
+  locked: string;
+  alt: string;
+  shells: number;
+  setShells: (n: number) => void;
+  isSelected: boolean;
+  isBought: boolean;
+  onBuy: (color: string, price: number) => void;
+  onSelect: (color: string) => void;
+};
 
-  if (typeof window !== 'undefined') {
-    localStorage.setItem("selected", "blue")
-  }
-  useEffect(() => {
-    setBought(localStorage.getItem(bottleID) === "true")
-    // setSelected(localStorage.getItem("selected_bottle") === "true");
-    console.log("hello from Bottle useEffect");
-  }, []);
-
-  function handleSelect(){
-
-  }
-  // set water bottle woohoo 
-  function selectBtn(color: string){
-    const selected = localStorage.getItem("selected") || "blue";
-    return (
-      <button id = {'btn-${props.color}-sel'} onClick={handleSelect}>
-        {selected === props.color ? "Selected" : "Set as Water Bottle"}
-      </button>
-    )
-  }
-
-  function handleBuy() {
-    if (bought) {
-      // alert("You already bought this bottle!");
-      // set as water bottle
-      localStorage.setItem("selected", props.color);
-      
-      return;
-    }
-    // const bottleID = `bought-${props.color}`;
-    const username = localStorage.getItem('wotter_current_user') || '';
-    const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
-    const water = userData.water || 0;
-    const goal = userData.goal || 64;
-    const shells = props.shells;
-    const newShells = shells - props.price;
-    if (newShells < 0) {
-      alert("You don't have enough shells to buy this bottle!");
-      return;
-    } else {
-      const newUserData = { ...userData, goal, water, shells: newShells };
-      localStorage.setItem(`wotter_data_${username}`, JSON.stringify(newUserData));
-      props.setShells(newShells); // update state, triggers Shell re-render
-    }
-    document.getElementById(`bottle-${props.color}`)?.setAttribute('src', props.locked);
-    localStorage.setItem(bottleID, "true");
-    const btn = document.getElementById(`btn-${props.color}`) as HTMLButtonElement | null;
-    // if (btn) {
-    //   btn.disabled = true;
-    //   btn.style.opacity = "0.5";
-    //   btn.style.cursor = "not-allowed";
-    // }
-    // if (btn) {
-    //   btn.innerHTML = "Set as Water Bottle";
-    //   props.price = 0;
-    // }
-    // let buttonText = `Buy for ${props.price} Shells`;
-    // if (bought && selected === props.color) buttonText = "Selected";
-    // else if (bought && selected !== props.color) buttonText = "Set as Water Bottle";
-    // if(btn !== null){
-    //   btn.innerHTML = buttonText;
-    // }
-  }
-
+function Bottle({
+  color,
+  price,
+  image,
+  locked,
+  alt,
+  shells,
+  setShells,
+  isSelected,
+  isBought,
+  onBuy,
+  onSelect,
+}: BottleProps) {
   return (
     <div>
-      <img id={`bottle-${props.color}`}
-        src={bought ? props.locked : props.image}
-        alt={props.alt}
-        style={{ width: 250 }} />
-      <button
-        id={`btn-${props.color}`}
+      <img
+        id={`bottle-${color}`}
+        className ={'main'}
+        src={isBought && !isSelected ? locked : image}
+        alt={alt}
         style={{
-          backgroundColor: props.color,
-          color: 'white',
-          padding: '0.5rem 1rem',
-          border: 'none',
-          borderRadius: '20px'
-        }}
-        onClick={handleBuy}
-        disabled={bought}>
-        {/* Buy for {props.price} Shells */}
-        {bought ? "Bought!" : `Buy for ${props.price} Shells`}
-        {/* {buttonText} */}
-      </button>
+          // width: 250,
+          height: 600,
+          borderRadius: 20,
+          boxShadow: isSelected
+            ? '0 0 60px 30px #fff, 0 0 100px 60px #f0f, 0 0 140px 90px #0ff'
+            : 'none',
+          cursor: isBought ? 'default' : 'pointer'
+      }}
+      />
+      
+      {!isBought ? (
+        <button
+          id={`btn-${color}`}
+          style={{
+            backgroundColor: color,
+            color: 'white',
+            padding: '0.5rem 1rem',
+            border: 'none',
+            borderRadius: '20px',
+            marginTop: 10,
+            fontWeight: 600,
+          }}
+          onClick={() => onBuy(color, price)}
+          disabled={shells < price}
+        >
+          Buy for {price} Shells
+        </button>
+      ) : isSelected ? (
+        <button
+          style={{
+            backgroundColor: color,
+            color: 'white',
+            padding: '0.5rem 1rem',
+            border: 'none',
+            borderRadius: '20px',
+            marginTop: 10,
+            fontWeight: 700,
+            opacity: 0.7,
+          }}
+          disabled
+        >
+          Selected
+        </button>
+      ) : (
+        <button
+          style={{
+            backgroundColor: color,
+            color: 'white',
+            padding: '0.5rem 1rem',
+            border: 'none',
+            borderRadius: '20px',
+            marginTop: 10,
+            fontWeight: 600,
+          }}
+          onClick={() => onSelect(color)}
+        >
+          Set as Water Bottle
+        </button>
+      )}
     </div>
   );
 }
@@ -107,15 +111,69 @@ function Shell({ shells }: { shells: number }) {
 
 export default function Bottles() {
   const [shells, setShells] = useState(0);
-  const [selected, setSelected] = useState("blue");
+  const [selectedBottle, setSelectedBottle] = useState("blue");
+  const [boughtBottles, setBoughtBottles] = useState<{ [color: string]: boolean }>({
+    blue: false,
+    brown: false,
+    purple: false,
+    pink: false,
+  });
+  const [username, setUsername] = useState('');
 
+  // Load state from localStorage on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const username = localStorage.getItem('wotter_current_user') || '';
-      const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
-      setShells(userData.shells || 0);
+  if (typeof window !== 'undefined') {
+    const user = localStorage.getItem('wotter_current_user') || '';
+    setUsername(user);
+    const userData = JSON.parse(localStorage.getItem(`wotter_data_${user}`) || '{}');
+    setShells(userData.shells || 0);
+
+    // Ensure blue bottle is always bought for this user
+    if (localStorage.getItem(`bought-blue-${user}`) !== "true") {
+      localStorage.setItem(`bought-blue-${user}`, "true");
     }
-  }, []);
+
+    // If no bottle is selected, select blue by default
+    const selected = localStorage.getItem(`selected_bottle_${user}`);
+    if (!selected) {
+      localStorage.setItem(`selected_bottle_${user}`, "blue");
+      setSelectedBottle("blue");
+    } else {
+      setSelectedBottle(selected);
+    }
+
+    setBoughtBottles({
+      blue: true,
+      brown: localStorage.getItem(`bought-brown-${user}`) === "true",
+      purple: localStorage.getItem(`bought-purple-${user}`) === "true",
+      pink: localStorage.getItem(`bought-pink-${user}`) === "true",
+    });
+  }
+}, []);
+
+  // Handle buying a bottle
+  function handleBuy(color: string, price: number) {
+  if (boughtBottles[color]) return;
+  if (shells < price) {
+    alert("You don't have enough shells to buy this bottle!");
+    return;
+  }
+  const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
+  const newShells = shells - price;
+  const newUserData = { ...userData, shells: newShells };
+  localStorage.setItem(`wotter_data_${username}`, JSON.stringify(newUserData));
+  setShells(newShells);
+  localStorage.setItem(`bought-${color}-${username}`, "true");
+  setBoughtBottles(prev => ({ ...prev, [color]: true }));
+  // Do NOT auto-select after buying!
+}
+
+  // Handle selecting a bottle
+  function handleSelect(color: string) {
+    if (!boughtBottles[color]) return;
+    localStorage.setItem(`selected_bottle_${username}`, color);
+    setSelectedBottle(color);
+  }
 
   return (
     <div style={{
@@ -126,7 +184,6 @@ export default function Bottles() {
       width: 'auto',
       margin: 0,
       overflow: 'auto',
-
     }}>
       <p>Bottles page</p>
       <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-end', position: 'fixed', bottom: 0, margin: '1rem' }}>
@@ -134,42 +191,60 @@ export default function Bottles() {
           <button>Go Drink</button>
         </a>
       </div>
-      <Bottle
-        color={"blue"}
-        price={0}
-        image={"./bottles/plasticbottle.png"}
-        locked={"./bottles/plasticbottle_bought.png"}
-        alt={"Plastic Bottle"}
-        shells={shells}
-        setShells={setShells}
-      />
-      <Bottle
-        color={"brown"}
-        price={5}
-        image={"./bottles/stanley.png"}
-        locked={"./bottles/stanley_bought.png"}
-        alt={"Stanley Bottle"}
-        shells={shells}
-        setShells={setShells}
-      />
-      <Bottle
-        color={"purple"}
-        price={10}
-        image={"./bottles/hydroflask.png"}
-        locked={"./bottles/hydroflask_bought.png"}
-        alt={"Hydroflask"}
-        shells={shells}
-        setShells={setShells}
-      />
-      <Bottle
-        color={"pink"}
-        price={15}
-        image={"./bottles/owala.png"}
-        locked={"./bottles/owala_bought.png"}
-        alt={"Hydroflask"}
-        shells={shells}
-        setShells={setShells}
-      />
+      <div style={{ display: 'flex', gap: 32, marginTop: 40, justifyContent: 'center' }}>
+        <Bottle
+          color="blue"
+          price={0}
+          image="./bottles/plasticbottle.png"
+          locked="./bottles/plasticbottle_bought.png"
+          alt="Plastic Bottle"
+          shells={shells}
+          setShells={setShells}
+          isSelected={selectedBottle === "blue"}
+          isBought={boughtBottles.blue}
+          onBuy={handleBuy}
+          onSelect={handleSelect}
+        />
+        <Bottle
+          color="brown"
+          price={5}
+          image="./bottles/stanley.png"
+          locked="./bottles/stanley_bought.png"
+          alt="Stanley Bottle"
+          shells={shells}
+          setShells={setShells}
+          isSelected={selectedBottle === "brown"}
+          isBought={boughtBottles.brown}
+          onBuy={handleBuy}
+          onSelect={handleSelect}
+        />
+        <Bottle
+          color="purple"
+          price={10}
+          image="./bottles/hydroflask.png"
+          locked="./bottles/hydroflask_bought.png"
+          alt="Hydroflask"
+          shells={shells}
+          setShells={setShells}
+          isSelected={selectedBottle === "purple"}
+          isBought={boughtBottles.purple}
+          onBuy={handleBuy}
+          onSelect={handleSelect}
+        />
+        <Bottle
+          color="pink"
+          price={15}
+          image="./bottles/owala.png"
+          locked="./bottles/owala_bought.png"
+          alt="Owala"
+          shells={shells}
+          setShells={setShells}
+          isSelected={selectedBottle === "pink"}
+          isBought={boughtBottles.pink}
+          onBuy={handleBuy}
+          onSelect={handleSelect}
+        />
+      </div>
       <Shell shells={shells} />
     </div>
   );

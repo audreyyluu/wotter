@@ -19,6 +19,7 @@ export default function Drink() {
   const [isMinusHovered, setMinusIsHovered] = useState(false);
   const [isPlusHovered, setPlusIsHovered] = useState(false);
   const [otterBlink, setOtterBlink] = useState(false);
+  const [selectedBottle, setSelectedBottle] = useState("blue");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,21 +30,33 @@ export default function Drink() {
   }, []);
 
   useEffect(() => {
-    document.documentElement.style.margin = '0';
-    document.documentElement.style.padding = '0';
-    document.body.style.margin = '0';
-    document.body.style.padding = '0';
+  document.documentElement.style.margin = '0';
+  document.documentElement.style.padding = '0';
+  document.body.style.margin = '0';
+  document.body.style.padding = '0';
 
-    // Load user data
-    if (typeof window !== 'undefined') {
-      const username = localStorage.getItem('wotter_current_user') || '';
-      const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
-      const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
-      setGoal(userData.goal || 64);
-      setWater(userData.water || 0);
-      setShells(userData.shells || 0);
-    }
-  }, []);
+  // Load user data
+  if (typeof window !== 'undefined') {
+    const username = localStorage.getItem('wotter_current_user') || '';
+    const users = JSON.parse(localStorage.getItem('wotter_users') || '{}');
+    const userData = JSON.parse(localStorage.getItem(`wotter_data_${username}`) || '{}');
+    setGoal(userData.goal || 64);
+    setWater(userData.water || 0);
+    setShells(userData.shells || 0);
+
+    // Load selected bottle
+    const selected = localStorage.getItem(`selected_bottle_${username}`) || "blue";
+    setSelectedBottle(selected);
+  }
+}, []);
+
+
+  const bottleImages: { [color: string]: string } = {
+    blue: "/assets/bottles/plasticbottle.png",
+    brown: "/assets/bottles/stanley.png",
+    purple: "/assets/bottles/hydroflask.png",
+    pink: "/assets/bottles/owala.png",
+  };
 
   // Save water and goal to localStorage for the current user
   const saveUserData = (newGoal: number, newWater: number, newShells: number) => {
@@ -180,7 +193,7 @@ export default function Drink() {
           </button>
           {/* Water Bottle Image with floating animation */}
           <img
-            src="/assets/bottles/plasticbottle.png"
+            src={bottleImages[selectedBottle] || bottleImages["blue"]}
             alt="Water Bottle"
             className={styles['floating-bottle']}
           />
