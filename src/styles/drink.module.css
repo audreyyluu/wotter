@@ -95,11 +95,7 @@
 .set-goal {
     margin-right: 24px;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: 1px solid #0074D9;
-    background: #fff;
-    color: #0074D9;
-    font-weight: 600;
+    width: 150px;
 }
 
 .floating-bottle {
@@ -118,8 +114,6 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #0074D9;
-    background: #fff;
     color: #0074D9;
     font-weight: 700;
     margin-right: 16px;

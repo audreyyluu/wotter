@@ -141,7 +141,7 @@ export default function Drink() {
             style={{
               width: '100%',
               height: `${progressPercent}%`,
-              background: '#4295e2',
+              background: 'linear-gradient(to top, #4295e2 0%, #aee7ff 100%)',
               transition: 'height 0.3s',
             }}
           />
@@ -153,7 +153,7 @@ export default function Drink() {
         <div className={styles['center-water-container']}>
           {/* Set Goal Button */}
           <button className={styles['set-goal']} onClick={() => setShowGoalPopup(true)}>
-            Set Goal
+            <img src="/assets/buttons/set_goal_button.png" alt="Set Goal" />
           </button>
           {/* Water Bottle Image with floating animation */}
           <img
@@ -168,7 +168,7 @@ export default function Drink() {
               className={styles['change-water-button']}
               aria-label="Remove water"
             >
-              -
+              <img src="/assets/buttons/decrease_button.png" alt="minus" />
             </button>
             <span className={styles['water-amount']}>
               {water} oz
@@ -178,7 +178,7 @@ export default function Drink() {
               className={styles['change-water-button']}
               aria-label="Add water"
             >
-              +
+              <img src="/assets/buttons/increase_button.png" alt="plus" />
             </button>
           </div>
         </div>
